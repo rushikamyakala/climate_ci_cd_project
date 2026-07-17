@@ -24,11 +24,9 @@ from app.database import (
 # Load .env properly
 # -----------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
-env_path = BASE_DIR / ".env"
+load_dotenv(BASE_DIR / ".env")
 
-load_dotenv(env_path)
-
-API_KEY = os.getenv("OPENWEATHER_API_KEY")
+API_KEY = os.environ.get("OPENWEATHER_API_KEY")
 
 if not API_KEY:
     logger.error("OpenWeather API Key not found.")
