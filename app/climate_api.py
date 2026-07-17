@@ -28,9 +28,6 @@ load_dotenv(BASE_DIR / ".env")
 
 
 
-if not API_KEY:
-    logger.error("OpenWeather API Key not found.")
-
 logger.info("Environment loaded successfully.")
 logger.info(f"Python Executable: {sys.executable}")
 
@@ -61,15 +58,15 @@ def get_weather(city: str) -> dict:
     api_key = os.getenv("OPENWEATHER_API_KEY")
 
     if not api_key:
-        logger.error("API key not found")
+        logger.error("OpenWeather API Key not found.")
         return {"error": "API key not found"}
 
     start_total = time.time()
 
     url = (
-    f"https://api.openweathermap.org/data/2.5/weather"
-    f"?q={city}&appid={api_key}&units=metric"
-)
+        f"https://api.openweathermap.org/data/2.5/weather"
+        f"?q={city}&appid={api_key}&units=metric"
+    )
 
     start_api = time.time()
     response = requests.get(url, timeout=10)
