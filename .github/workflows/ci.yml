@@ -25,10 +25,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Initialize Database
-        env:
-          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
         run: |
-          python -c "from app.database import initialize_database; initialize_database()"
+          python -c "from app.database import init_db; init_db()"
 
       - name: Run Tests with Coverage
         env:
