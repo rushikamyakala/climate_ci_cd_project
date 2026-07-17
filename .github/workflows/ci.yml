@@ -28,18 +28,6 @@ jobs:
         run: |
           python -c "from app.database import init_db; init_db()"
 
-      # 👇 ADD THIS BLOCK HERE
-      - name: Check Secret
-        env:
-          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
-        run: |
-          if [ -z "$OPENWEATHER_API_KEY" ]; then
-            echo "Secret NOT found"
-            exit 1
-          else
-            echo "Secret Found"
-          fi
-
       - name: Run Tests with Coverage
         env:
           OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
