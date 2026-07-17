@@ -1,3 +1,7 @@
 requests
 streamlit
 pytest
+pytest-cov
+python-dotenv
+pandas
+plotly
