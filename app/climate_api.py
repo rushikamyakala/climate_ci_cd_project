@@ -26,7 +26,7 @@ from app.database import (
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
-API_KEY = os.environ.get("OPENWEATHER_API_KEY")
+
 
 if not API_KEY:
     logger.error("OpenWeather API Key not found.")
@@ -58,12 +58,18 @@ def detect_anomaly(city: str, current_temp: float) -> bool:
 # Main Weather Function
 # -----------------------------
 def get_weather(city: str) -> dict:
-    if not API_KEY:
+    api_key = os.getenv("OPENWEATHER_API_KEY")
+
+    if not api_key:
+        logger.error("API key not found")
         return {"error": "API key not found"}
 
     start_total = time.time()
 
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+    url = (
+    f"https://api.openweathermap.org/data/2.5/weather"
+    f"?q={city}&appid={api_key}&units=metric"
+)
 
     start_api = time.time()
     response = requests.get(url, timeout=10)
