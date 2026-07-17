@@ -31,7 +31,7 @@ API_KEY = os.environ.get("OPENWEATHER_API_KEY")
 if not API_KEY:
     logger.error("OpenWeather API Key not found.")
 
-logger.info(f"Environment loaded from: {env_path}")
+logger.info("Environment loaded successfully.")
 logger.info(f"Python Executable: {sys.executable}")
 
 # -----------------------------
