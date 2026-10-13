@@ -94,11 +94,16 @@ def get_weather(city: str) -> dict:
     f"Weather fetched successfully for {city} "
     f"in {total_execution_time} seconds."
 )
+    
     return {
         "temperature": temperature,
         "humidity": humidity,
         "wind_speed": wind_speed,
-        "is_anomaly": anomaly,
+        "weather": data["weather"][0]["main"],
+        "description": data["weather"][0]["description"].title(),
+        "icon": data["weather"][0]["icon"],
         "api_response_time": api_response_time,
+        "anomaly": anomaly,
         "total_execution_time": total_execution_time
+        
     }
